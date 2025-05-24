@@ -22,7 +22,7 @@ app.use('/api/clerk-webhooks', (req, res) => {
     .then(({ default: clerkWebhooks }) => {
       clerkWebhooks(req, res);
     })
-    .catch(err => {
+    .catch(err => { 
       console.error("Error loading webhook handler:", err);
       res.status(500).json({ success: false, error: 'Internal Server Error' });
     });
