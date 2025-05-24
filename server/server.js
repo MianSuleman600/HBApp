@@ -16,17 +16,7 @@ app.use(express.json());
 app.use(clerkMiddleware());
 
 // Api to handle Clerk webhooks
-app.use('/api/clerk-webhooks', (req, res) => {
-  // Import the webhook handler dynamically to avoid circular dependencies
-  import('./controllers/clerkWebhooks.js')
-    .then(({ default: clerkWebhooks }) => {
-      clerkWebhooks(req, res);
-    })
-    .catch(err => { 
-      console.error("Error loading webhook handler:", err);
-      res.status(500).json({ success: false, error: 'Internal Server Error' });
-    });
-});
+app.use('api/clerk ,clerkWebhooks');
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
